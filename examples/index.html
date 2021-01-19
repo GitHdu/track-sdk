@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue & Getui SDK</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>修改src下面的文件会引发重新打包和热更新</div>
+      <div>可以在本页面调试发送埋点</div>
+      <p>
+        <!-- use router-link component for navigation. -->
+        <!-- specify the link by passing the `to` prop. -->
+        <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
+        <router-link to="/foo">Go to Foo</router-link>
+        <router-link to="/bar">Go to Bar</router-link>
+      </p>
+      <!-- route outlet -->
+      <!-- component matched by the route will render here -->
+      <router-view></router-view>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@3.0.6/dist/vue-router.min.js"></script>
+    <!-- <script src="autotrack.js"></script> -->
+    <script src="../dist/getuidata.umd.js"></script>
+    <script>
+      var gd = window.GetuiData
+      gd.init({
+        distinct_id: '8888',
+        appId: '00000',
+        server_url: 'http://192.168.26.73:8089/iop-ps/sdk/data.gif',
+        // batch_send: true,
+        preset_properties: {
+          referrer: '99999'
+        },
+        show_log: true
+      })
+      gd.autoTrack()
+    </script>
+    <!-- <script>
+      (function (para) {
+        var w = window, n = para.name
+        w['GetuiData'] = n;
+        w[n] = w[n] || function(a) {return function() {(w[n]._q = w[n]._q || []).push([a, arguments]);}};       
+        var ifs = ['init', 'track', 'autoTrack'];
+        for (var i = 0; i < ifs.length; i++) {
+          w[n][ifs[i]] = w[n].call(null, ifs[i]);
+        }
+        var s =document.createElement('script');
+        s.type='text/javascript';
+        s.async=true;
+        s.src=para.sdk_url;
+        var x =document.getElementsByTagName('script')[0];
+        w[n].customPara = para
+        x.parentNode.insertBefore(s, x);
+      })({
+        sdk_url: 'https://cdn-getuigw.getui.com/iopsdk/getuidata.min.js',
+        // distinct_id: '8888',
+        name: 'GetuiDataSDK',
+        appId: '00000',
+        server_url: '66666666',
+        preset_properties: {
+          referrer: '99999'
+        }
+      });
+      GetuiDataSDK.autoTrack()
+    </script> -->
+    <script src="index.js"></script>
+  </body>
+</html>
